@@ -9,6 +9,11 @@ import { HomePage } from '../pages/home/home.page';
 import { SlideBoxPage } from '../pages/slide-box/slide-box.page';
 import { WordpressListPage } from '../pages/wordpress/list/wordpress.list.page';
 
+import { LoginPage } from '../pages/login/login';
+
+// Service
+import { AuthService } from '../services/auth.service';
+
 @Component({
 	templateUrl: 'app.html'
 })
@@ -23,6 +28,7 @@ export class MyApp {
 		private platform: Platform,
 		private menu: MenuController,
 		private statusBar: StatusBar,
+		private auth: AuthService,
 	) {
 		this.initializeApp();
 
@@ -35,13 +41,49 @@ export class MyApp {
 			{ title: 'Components', component: ComponentsListPage, icon: 'grid' }
 		];
 
-		this.rootPage = HomePage;
+		/*this.rootPage = HomePage;*/
+		/*this.rootPage = LoginPage;*/
 	}
 
-	initializeApp() {
+	/*initializeApp() {
+		
 		this.platform.ready().then(() => {
 			this.statusBar.styleDefault();
 		});
+		this.rootPage = LoginPage;
+
+	}
+	*/
+	initializeApp() {
+		this.platform.ready().then(() => {
+		  this.statusBar.styleDefault();
+		});
+	  
+		this.auth.afAuth.authState
+		  .subscribe(
+			user => {
+			  if (user) {
+				this.rootPage = HomePage;
+			  } else {
+				this.rootPage = LoginPage;
+			  }
+			},
+			() => {
+			  this.rootPage = LoginPage;
+			}
+		  );
+	}
+
+	
+	login() {
+		this.menu.close();
+		  this.auth.signOut();
+		  this.nav.setRoot(LoginPage);
+	}
+	logout() {
+		this.menu.close();
+		this.auth.signOut();
+		this.nav.setRoot(HomePage);
 	}
 
 	openPage(page) {
