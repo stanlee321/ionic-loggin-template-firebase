@@ -6,12 +6,33 @@ import AuthProvider = firebase.auth.AuthProvider;
 @Injectable()
 export class AuthService {
 	private user: firebase.User;
+    private userDetails: firebase.User = null;
 
 	constructor(public afAuth: AngularFireAuth) {
 		afAuth.authState.subscribe(user => {
-			this.user = user;
+            this.user = user;
+            if (this.user){
+                this.userDetails = user;
+            }else{
+                this.userDetails = null;
+            }
 		});
-	}
+    }
+    
+
+    // Returns true if user is logged in
+   
+    // Returns current user UID
+    get currentUserId(): string {
+        return this.authenticated ? this.userDetails.uid : '';
+    }
+
+    // Returns current user display name or Guest
+    get currentUserDisplayName(): string {
+        return this.userDetails.displayName || this.userDetails.email; 
+    }
+
+
 
 	signInWithEmail(credentials) {
 		console.log('Sign in with email');
@@ -30,6 +51,7 @@ export class AuthService {
     signOut(): Promise<void> {
         return this.afAuth.auth.signOut();
     }
+
 
     signInWithGoogle() {
 		console.log('Sign in with google');

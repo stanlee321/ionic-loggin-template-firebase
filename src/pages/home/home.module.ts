@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 import { InAppBrowserService } from '../../services/in-app-browser.service';
 import { MapsService } from '../../services/maps.service';
 
+
+
 @NgModule({
 	imports: [IonicModule],
 	declarations: [HomePage],

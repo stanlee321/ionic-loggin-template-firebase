@@ -11,11 +11,10 @@ import { GoogleMapsModule } from '../pages/google-maps/google-maps.module';
 import { HomeModule } from '../pages/home/home.module';
 import { SlideBoxModule } from '../pages/slide-box/slide-box.module';
 import { WordpressModule } from '../pages/wordpress/wordpress.module';
-import { MyApp } from './app.component';
+import { LastInfractionPageModule } from '../pages/last-infraction/last-infraction.module';
+import {  AddPlatePageModule } from '../pages/add-plate/add-plate.module';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { firebaseConfig } from '../config';
+import { MyApp } from './app.component';
 
 // Own modules
 import { LoginPage } from '../pages/login/login';
@@ -26,7 +25,19 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
 
 // Auth service
 import { AuthService } from '../services/auth.service';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { PostService } from '../services/post.service';
 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config';
+import { Firebase } from '@ionic-native/firebase';
+
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
 	declarations: [
@@ -45,8 +56,12 @@ import { AuthService } from '../services/auth.service';
 		HomeModule,
 		SlideBoxModule,
 		WordpressModule,
+		LastInfractionPageModule,
+		AddPlatePageModule,
 		AngularFireModule.initializeApp(firebaseConfig.fire),
-		NgxErrorsModule
+		AngularFirestoreModule,	
+		NgxErrorsModule,
+		HttpClientModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
@@ -58,8 +73,12 @@ import { AuthService } from '../services/auth.service';
 		Config,
 		StatusBar,
 		AuthService,
-		AngularFireAuth
-		
+		AngularFireAuth,
+		AngularFirestore,
+		FcmProvider,
+		Firebase,
+		PostService,
+		HttpClient
 	]
 })
 export class AppModule {

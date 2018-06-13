@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_number": "341594814314",
+    "firebase_url": "https://infractor-d5010.firebaseio.com",
+    "project_id": "infractor-d5010",
+    "storage_bucket": "infractor-d5010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341594814314:android:fd42f85ec4478b8f",
+        "android_client_info": {
+          "package_name": "com.dems.infraction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341594814314-gn52jk0srhrc9rakg6s4o4jhi2njkvbs.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "341594814314-gn52jk0srhrc9rakg6s4o4jhi2njkvbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2I512vTJpGT7JODm4oSy3LSXXuAxlNN4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341594814314-gn52jk0srhrc9rakg6s4o4jhi2njkvbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

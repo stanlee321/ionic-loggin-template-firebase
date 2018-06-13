@@ -3,8 +3,8 @@ import { Nav } from 'ionic-angular';
 
 import { WordpressListPage } from '../wordpress/list/wordpress.list.page';
 import { SlideBoxPage } from '../slide-box/slide-box.page';
-import { GoogleMapsPage } from '../google-maps/google-maps.page';
-
+import { LastInfractionPage } from '../last-infraction/last-infraction'
+import {  AddPlatePage } from '../add-plate/add-plate';
 import { Tile } from './models/tile.model';
 import { EmailService } from '../../services/email.service';
 import { CallService } from '../../services/call.service';
@@ -54,20 +54,20 @@ export class HomePage {
 
 	private initTiles(): void {
 		this.tiles = [[{
-			title: 'Wordpress',
-			path: 'wordpress-articles',
-			icon: 'logo-wordpress',
-			component: WordpressListPage
+			title: 'Registrar Placa',
+			path: 'registrar-placa',
+			icon: 'car',
+			component: AddPlatePage
 		}, {
-			title: 'Slides',
-			path: 'slides',
-			icon: 'swap',
-			component: SlideBoxPage
+			title: 'Ultima Infraccion',
+			path: 'last',
+			icon: 'image',
+			component: LastInfractionPage
 		}], [{
-			title: 'Map',
-			path: 'map',
-			icon: 'map',
-			component: GoogleMapsPage
+			title: 'Todas mis Infraccines',
+			path: 'todas',
+			icon: 'images',
+			component: WordpressListPage
 		}]];
 	}
 }
