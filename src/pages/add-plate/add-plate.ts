@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 
+
+import { AuthService } from '../../services/auth.service';
+
 /**
  * Generated class for the AddPlatePage page.
  *
@@ -24,7 +27,7 @@ export class AddPlatePage {
      public navParams: NavParams,
      private fb: FormBuilder,
      private post_service: PostService,
-     //private auth: AuthService
+     private auth: AuthService
   ) {
     this.form = fb.group({
 			plate: ['', Validators.compose([Validators.required])],
@@ -32,9 +35,21 @@ export class AddPlatePage {
   }
 
   onSubmit() {
-    this.post_service.sendPost().subscribe((response) => {
-      console.log(response)
+    let plate = this.form.value;
+    let userItems: any = this.auth.getItemsList;
+    console.log(plate)
+    console.log('THIS', userItems )
+
+    let credentials = {
+			plate: plate.plate,
+      cellnumber: userItems.userId,
+      token: userItems.token
+    };
+    
+    this.post_service.sendPost(credentials).subscribe((response) => {
+      console.log('RESPONSE IS ', response);
     })
+
     /*
 		let data = this.form.value;
 		let credentials = {
@@ -46,5 +61,5 @@ export class AddPlatePage {
 			error => this.signupError = error.message
     );
     */
-}
+  }
 }

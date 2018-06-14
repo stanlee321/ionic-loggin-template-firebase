@@ -36,7 +36,7 @@ export class FcmProvider {
   }
 
   // Save the token to firestore
-  private saveTokenToFirestore(token,uid) {
+  private saveTokenToFirestore(token, uid) {
     if (!token) return;
   
     const devicesRef = this.afs.collection('devices')
@@ -46,7 +46,7 @@ export class FcmProvider {
       userId: uid,
     }
 
-    return devicesRef.doc(token).set(docData)
+    return devicesRef.doc(uid).set(docData)
   }
 
   // Listen to incoming FCM messages

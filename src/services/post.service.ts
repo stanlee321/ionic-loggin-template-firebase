@@ -12,18 +12,9 @@ export class PostService {
 	constructor(private http: HttpClient) {
 	}
 
-	sendPost() {
-
+	sendPost(data_to_post) {
+		console.log('SEND TO AWS', data_to_post)
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-
-
-		let body = new FormData();
-
-		body.append('plate', 'XXXXXXX');
-		body.append('phonenumber','5555');
-		console.log(body);
-		console.log(headers);
-
-		return this.http.post(this.apiurl,JSON.stringify(body))
+		return this.http.post(this.apiurl, JSON.stringify(data_to_post))
 	}
 }

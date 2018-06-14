@@ -35,6 +35,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { firebaseConfig } from '../config';
 import { Firebase } from '@ionic-native/firebase';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+
+import { AngularFireAuthModule } from "angularfire2/auth"
 
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'
@@ -60,6 +64,7 @@ import { HttpClientModule } from '@angular/common/http'
 		AddPlatePageModule,
 		AngularFireModule.initializeApp(firebaseConfig.fire),
 		AngularFirestoreModule,	
+		AngularFireAuthModule,
 		NgxErrorsModule,
 		HttpClientModule
 	],
@@ -78,6 +83,7 @@ import { HttpClientModule } from '@angular/common/http'
 		FcmProvider,
 		Firebase,
 		PostService,
+		AngularFireDatabase,
 		HttpClient
 	]
 })
