@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class PostService {
 	private apiurl = "https://2wktbyciic.execute-api.us-east-1.amazonaws.com/prod/read-user"
+	private getUrl = "https://rh6l4juu0i.execute-api.us-east-1.amazonaws.com/prod/infractor-serve-last-by-gets-to-app"
 	constructor(private http: HttpClient) {
 	}
 
@@ -23,5 +24,12 @@ export class PostService {
 		return this.http.post(this.apiurl, JSON.stringify(data_to_post), {
 											headers: { 'Content-Type': 'application/json' }
 							});
+	}
+
+	// let to retrieve last infration from userId input
+	getLastAssets(userId:string){
+		console.log(userId)
+		console.log('THIS USER get', this.getUrl + `?userId=${userId}`)
+		return this.http.get(this.getUrl + `?userId=${userId}`)
 	}
 }
