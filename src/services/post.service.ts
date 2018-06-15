@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PostService {
-	private user: firebase.User;
 	private apiurl = "https://2wktbyciic.execute-api.us-east-1.amazonaws.com/prod/read-user"
 	constructor(private http: HttpClient) {
 	}
@@ -22,6 +21,7 @@ export class PostService {
     
 		console.log('SEND TO AWS', postData)
 		return this.http.post(this.apiurl, JSON.stringify(data_to_post), {
-											headers: { 'Content-Type': 'application/json' }}) ;
+											headers: { 'Content-Type': 'application/json' }
+							});
 	}
 }
