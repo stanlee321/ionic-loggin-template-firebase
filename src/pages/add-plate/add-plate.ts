@@ -21,7 +21,7 @@ import { AuthService } from '../../services/auth.service';
 export class AddPlatePage {
   signupError: string;
   form: FormGroup;
-  
+  postResponse:any;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -37,6 +37,7 @@ export class AddPlatePage {
   onSubmit() {
     let plate = this.form.value;
     let userItems: any = this.auth.getItemsList;
+
     console.log(plate)
     console.log('THIS', userItems )
 
@@ -47,7 +48,7 @@ export class AddPlatePage {
     };
     
     this.post_service.sendPost(credentials).subscribe((response) => {
-      console.log('RESPONSE IS ', response);
+      this.postResponse  =  response;
     })
 
     /*

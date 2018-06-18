@@ -14,26 +14,16 @@
     </ion-navbar>
 </ion-header>  
 
-<ion-content>
-
-  <div class="home-hello">
-    <img src="https://s3.amazonaws.com/demscloud.deepmicrosystems.com/testimages/Montecinos/febrero/2018-02-13_reporte/06-51-40_ROJO_directo_x1_-Infraccion_2374TNX_100/2018-02-13_06-51-40_1wm.jpg" />
-    <div class="hello-title" text-wrap>
-      <h1>Ultime Infraccion</h1>
-      Cometida en Ciudad,94100.
+<div *ngIf="display">
+    <div class="home-helllo">
+      <img src= "{{lastAsset.imgurl}}"/>
+        <p>Cometida en {{lastAsset.dateinfraction}} a horas {{lastAsset.hourinfraction}} con placa {{lastAsset.plate}} </p>
     </div>
-  </div>
 
-
-  <div class="home-hello">
-    <video controls autoplay loop style = "width: 100%; height: auto;">
-      <source src= "https://s3.amazonaws.com/demscloud.deepmicrosystems.com/testimages/Montecinos/febrero/2018-02-13_reporte/06-51-40_ROJO_directo_x1_-Infraccion_2374TNX_100/2018-02-13_06-51-40_video_.mp4" type="video/mp4">
-    </video>
-
-    <div class="hello-title" text-wrap>
-      <h1>Video</h1>
-      Evidencia en video
+    <div class="home-hello">
+      <video controls autoplay loop style = "width: 100%; height: auto;">
+        <source   src= "{{lastAsset.vidurl}}" type="video/mp4">
+      </video>
+      <h2 >Evidencia en video</h2>
     </div>
-  </div>
-
-</ion-content>
+</div>

@@ -2,14 +2,28 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { HttpClient } from '@angular/common/http';
+//import { Infraction } from '../pages/last-infraction/models/last.model'
+import { Observable } from 'rxjs';
 
 
+interface Infraction {
+	vidurl: string;
+	imgurl: string;
+	plate: string;
+	dateinfraction:string;
+	hourinfraction: string
+}
 
 @Injectable()
 export class PostService {
 	private apiurl = "https://2wktbyciic.execute-api.us-east-1.amazonaws.com/prod/read-user"
-	private getUrl = "https://rh6l4juu0i.execute-api.us-east-1.amazonaws.com/prod/infractor-serve-last-by-gets-to-app"
+	private getUrl = "https://rh6l4juu0i.execute-api.us-east-1.amazonaws.com/prod/infracciones"
+	private infractions:Infraction[];
+	results:Object[];
+
 	constructor(private http: HttpClient) {
+		this.results = [];
+
 	}
 
 
@@ -27,9 +41,23 @@ export class PostService {
 	}
 
 	// let to retrieve last infration from userId input
-	getLastAssets(userId:string){
-		console.log(userId)
-		console.log('THIS USER get', this.getUrl + `?userId=${userId}`)
-		return this.http.get(this.getUrl + `?userId=${userId}`)
+	public getLastAssets(userId:string){
+		
+		return this.http.get<Infraction>(this.getUrl + `/last?userId=${userId}`)
+
+
+
 	}
+
+	private createInfraction(item): Infraction {
+
+		return {
+			vidurl: item.vidurl,
+			imgurl: item.imgurl,
+			plate: item.plate,
+			dateinfraction: item.dateinfraction,
+			hourinfraction: item.hourinfraction
+
+		};
+	};
 }
